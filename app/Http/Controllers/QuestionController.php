@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Model\Question;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class QuestionController extends Controller
 {
@@ -15,6 +16,7 @@ class QuestionController extends Controller
     public function index()
     {
         //
+        return Question::latest()->get();
     }
 
     /**
@@ -35,7 +37,10 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // deal with user id later
+
+        Question::create($request->all());
+        return response('Created', Response::HTTP_CREATED); 
     }
 
     /**
@@ -47,6 +52,7 @@ class QuestionController extends Controller
     public function show(Question $question)
     {
         //
+        return $question;
     }
 
     /**
@@ -81,5 +87,7 @@ class QuestionController extends Controller
     public function destroy(Question $question)
     {
         //
+        $question->delete();
+        return response('Deleted',Response::HTTP_OK);
     }
 }

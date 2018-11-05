@@ -65,3 +65,25 @@ User:
     public function question() {
         return $this->hasMany(Question::class)
     }
+
+Factory:
+    Question:
+        $title = $faker->sentence()
+        
+        'title' => $title,
+        'slug' => str_slug($title),
+        body => $faker->text(),
+        'category_id' => function() {
+            return Category::all()->random();
+        },
+        'user_id' => function() {
+            return User::all()->random();
+        },
+     
+     ...
+     finish factory and seeding database
+
+php artisan migrate:fresh
+
+------------------------
+API ROUTE
