@@ -31,3 +31,37 @@ Category migration:
 
     $table->string('name');
     $table->string('slug');
+
+Model/Question:
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
+    public function replies() {
+        return $this->hasMany(Reply::class);
+    }
+
+    public function category() {
+        return $this->hasMany(Category::class);
+    }
+
+Model/Reply:
+
+    public function question() {
+        return $this->belongsTo(Question::class);
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
+    public function like() {
+        return $this->hasMany(Like::class);
+    }
+
+User:
+
+    public function question() {
+        return $this->hasMany(Question::class)
+    }
