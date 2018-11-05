@@ -1,0 +1,33 @@
+create models:
+    php artisan make:model Model/Question -mfr
+    php artisan make:model Model/Reply -mfr
+    php artisan make:model Model/Category -mfr
+    php artisan make:model Model/Like -mfr
+
+Question migration:
+
+    $table->string('title');
+    $table->string('slug');
+    $table->text('body');
+
+    $table->integer('category_id')->unsigned();
+    $table->integer('user_id')->unsigned();
+
+Reply migration:
+
+    $table->text('body');
+
+    $table->integer('user_id')->unsigned();
+    $table->integer('question_id')->unsigned();
+
+    $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
+
+Like migration:
+ 
+    $table->integer('user_id')->unsigned();
+    $table->integer('reply_id')->unsigned();
+
+Category migration:
+
+    $table->string('name');
+    $table->string('slug');
