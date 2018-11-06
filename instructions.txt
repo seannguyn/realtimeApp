@@ -87,3 +87,9 @@ php artisan migrate:fresh
 
 ------------------------
 API ROUTE
+
+
+-------------------------
+
+php artisan make:resource QuestionResource
+
