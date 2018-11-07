@@ -16,6 +16,6 @@ class Category extends Model
         return asset("api/category/$this->slug");
     }
 
-    protected $guard = [];
+    // protected $guarded = [];
     protected $fillable = ['name', 'slug'];
 }
