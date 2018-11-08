@@ -10,6 +10,9 @@ use App\User;
 class Like extends Model
 {
     //
+
+    protected $guarded = [];
+
     public function replies()
     {
       return $this->belongsTo(Reply::class);
