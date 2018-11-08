@@ -93,3 +93,56 @@ API ROUTE
 
 php artisan make:resource QuestionResource
 
+
+
+--------------------------
+JWT 
+composer.json:
+    "require": {
+        ...
+        "tymon/jwt-auth": "~1.0.0-rc.2"
+    },
+
+composer update
+
+php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
+
+php artisan jwt:secret
+
+copy code to user.php 
+
+Inside the config/auth.php: 
+    'defaults' => [
+    'guard' => 'api',
+    'passwords' => 'users',
+],
+
+    ...
+
+    'guards' => [
+        'api' => [
+            'driver' => 'jwt',
+            'provider' => 'users',
+        ],
+    ],
+
+copy code to ROUTE
+
+
+php artisan make:controller AuthController
+
+copy code over to AuthController
+
+ran into JWT middleware not defined, copy JWT middleware over
+
+test your API:
+    /me, /refresh
+        1. bearer
+        2. ?token=...
+        3. body
+    
+    /logout
+        body, token
+    
+    /login
+        body, email, password
