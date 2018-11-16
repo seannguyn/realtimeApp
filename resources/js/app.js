@@ -18,6 +18,9 @@ window.Vue = require('vue');
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import router from './Router/router.js'
+import User from './Helpers/User.js'
+
+window.User = User
 
 Vue.use(Vuetify)
 
