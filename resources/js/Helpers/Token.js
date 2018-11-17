@@ -7,11 +7,15 @@ class Token {
     }
 
     isValid(token) {
-        const payload = this.payload(token);
-        if (payload) {
-            return payload.iss == "http://127.0.0.1:8000/api/auth/login" ? true : false
-        }
+        const issLogin = "http://127.0.0.1:8000/api/auth/login";
+        const issSignup = "http://127.0.0.1:8000/api/auth/signup";        
         
+        const payload = this.payload(token);
+        
+        if (payload) {
+            return payload.iss == issSignup || issLogin ? true : false
+        }
+
         return false;
         
     }

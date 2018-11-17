@@ -3,12 +3,14 @@
         <v-form @submit.prevent="login">
 
             <v-text-field
+            label="Email"
             v-model="form.email"
             type="email"
             required
             ></v-text-field>
 
             <v-text-field
+            label="Password"
             v-model="form.password"
             type="password"
             required
@@ -19,6 +21,12 @@
             type="submit">
             Login
             </v-btn>
+
+            <router-link to="/signup">
+                <v-btn>
+                SignUp
+                </v-btn>
+            </router-link>
         </v-form>
     </v-container>
 </template>
@@ -33,10 +41,14 @@ export default {
             }
         }
     },
+    created() {
+        if (User.loggedIn() == true) {
+            this.$router.push({name:'forum'})
+        }
+    },
     methods: {
         login() {
             User.login(this.form);
-            
         }
     }
 }

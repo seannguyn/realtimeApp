@@ -1,6 +1,6 @@
 
 import Token from './Token'
-import AppStorge from './AppStorge';
+import AppStorage from './AppStorge';
 
 class User {
 
@@ -18,12 +18,15 @@ class User {
         const {user} = res.data;
         
         if (Token.isValid(access_token) == true) {
-            AppStorge.store(access_token,user);
+            AppStorage.store(access_token,user);
+            window.location='/forum'
         }
+        
     }
 
     hasToken() {
         const storedToken = AppStorage.getToken();
+
         if (storedToken) {
             return Token.isValid(storedToken) ? true : false;
         }
@@ -36,6 +39,7 @@ class User {
 
     logout() {
         AppStorage.clear()
+        window.location='/forum'
     }
 
     name() {
