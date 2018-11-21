@@ -13,14 +13,23 @@ class Question extends Model
 {
     //
     // protected $fillable = [fields...]
-    protected $guarded = [];
+    // protected $guarded = [];
+    protected $fillable = ['title','slug','user_id','category_id','body'];
+
+    protected static function boot() {
+        parent::boot();
+
+        static::creating(function($question) {
+            $question->slug = str_slug($question->title);
+        });
+    }
 
     public function getRouteKeyName() {
         return 'slug';
     }
 
     public function getPathAttribute() {
-        return asset("api/question/$this->slug");
+        return "/question/$this->slug";
     }
 
     public function user() {
