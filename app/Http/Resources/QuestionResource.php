@@ -17,6 +17,8 @@ class QuestionResource extends JsonResource
         // return parent::toArray($request);
         return [
             'title' => $this->title,
+            'replies' => ReplyResource::collection($this->replies),
+            'reply_count' => $this->replies->count(),
             'path' => $this->path,
             'slug' => $this->slug,
             'body'=> $this->body,
