@@ -5,6 +5,7 @@
               <div class="headline">{{reply.user}}</div>
               <div class="ml-2">said {{reply.created_at}}</div>
               <v-spacer></v-spacer>
+              <like :data=reply></like>
           </v-card-title>
           <v-divider></v-divider>
 
@@ -33,9 +34,10 @@
 <script>
 
 import EditReply from './EditReply'
+import Like from '../../likes/Like'
 
 export default {
-    components: {EditReply,},
+    components: {EditReply,Like},
     data() {
         return {
             reply: {},
